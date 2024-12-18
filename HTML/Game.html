@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Music Suggestion</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('../assets/Images/catman.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    color: #0a0a0a;
+
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+    }
+
+    p {
+        margin: 10px 0;
+        font-size: 1.2rem;
+    }
+
+    .mood-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    button.happy {
+        background: yellow;
+        color: #333;
+        font-family: "Brush Script MT", cursive;
+    }
+
+    button.sad {
+        background: blue;
+        color: white;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+    }
+
+    button.energetic {
+        background: orange;
+        color: white;
+        font-family: "Impact", sans-serif;
+    }
+
+    button.relaxed {
+        background: green;
+        color: white;
+        font-family: "Patrick Hand", cursive;
+    }
+
+    #suggestion {
+        margin-top: 30px;
+        padding: 15px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: none;
+    }
+
+    #suggestion a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    #suggestion a:hover {
+        text-decoration: underline;
+    }
+    </style>
+</head>
+<body>
+    <h1>What vibe are we feeling?</h1>
+    <p>Choose a mood and get a music suggestion!</p>
+
+    <div class="mood-container">
+        <button class="happy" onclick="suggestMusic('happy')">Happy</button>
+        <button class="sad" onclick="suggestMusic('sad')">Sad</button>
+        <button class="energetic" onclick="suggestMusic('energetic')">Energetic</button>
+        <button class="relaxed" onclick="suggestMusic('relaxed')">Relaxed</button>
+    </div>
+    
+
+    <div id="suggestion">
+        <p id="message"></p>
+        <a id="link" href="#" target="_blank">Listen Now</a>
+    </div>
+
+    <script>
+        function suggestMusic(mood) {
+            const suggestions = {
+                happy: {
+                    message: "You're feeling happy! Here's an upbeat tune to match:",
+                    link: "https://open.spotify.com/track/7lPN2DXiMsVn7XUKtOW1CS"
+                },
+                sad: {
+                    message: "Feeling down? This song might lift your spirits:",
+                    link: "https://open.spotify.com/track/2RSHsoi04658QL5xgQVov3"
+                },
+                energetic: {
+                    message: "Ready to pump it up? Try this track:",
+                    link: "https://open.spotify.com/track/1BxfuPKGuaTgP7aM0Bbdwr"
+                },
+                relaxed: {
+                    message: "Time to chill. Here's a relaxing tune:",
+                    link: "https://open.spotify.com/track/2xLMifQCjDGFmkHkpNLD9h"
+                }
+            };
+
+            const suggestionDiv = document.getElementById('suggestion');
+            const messageEl = document.getElementById('message');
+            const linkEl = document.getElementById('link');
+
+            const { message, link } = suggestions[mood];
+
+            messageEl.textContent = message;
+            linkEl.href = link;
+
+            suggestionDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
